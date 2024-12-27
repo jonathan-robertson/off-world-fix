@@ -18,7 +18,7 @@ namespace OffWorldFix.Patches
 
                 // TODO: check ownership... maybe teleport backpacks directly in front of player, for instance?
 
-                if (IsWithinWorldBounds(__instance))
+                if (IsWithinWorldBounds(__instance.position))
                 {
                     _log.Trace($"detected entity {__instance.entityId} was within world bounds");
                     return true; // not out of bounds, just unloaded normally
@@ -33,10 +33,15 @@ namespace OffWorldFix.Patches
                         break;
                 }
 
-                if (__instance.position.y < ModApi.MAP_MIN.y)
+                if (IsWithinWorldBoundsXAndZ(__instance.position) && !IsWithinWorldBoundsY(__instance.position))
                 {
                     var newPos = __instance.position;
                     newPos.y = GameManager.Instance.World.GetHeightAt(__instance.position.x, __instance.position.z);
+                    if (!IsWithinWorldBounds(newPos))
+                    {
+                        _log.Info($"A valid position could not be determined to recover {__instance.entityId}; allowing entity unload.");
+                        return true;
+                    }
                     _log.Info($"Detected entity {__instance.entityId} fell out of bottom of world; repositioning from {__instance.position} to {newPos}");
                     __instance.SetPosition(newPos);
                     ConnectionManager.Instance.SendPackage(NetPackageManager.GetPackage<NetPackageEntityTeleport>().Setup(__instance), false, -1, -1, -1, __instance.position, 192);
@@ -52,14 +57,24 @@ namespace OffWorldFix.Patches
             return true;
         }
 
-        private static bool IsWithinWorldBounds(Entity entity)
+        private static bool IsWithinWorldBoundsXAndZ(UnityEngine.Vector3 position)
         {
-            return entity.position.x > ModApi.MAP_MIN.x
-                    && entity.position.y > ModApi.MAP_MIN.y
-                    && entity.position.z > ModApi.MAP_MIN.z
-                    && entity.position.x <= ModApi.MAP_MAX.x
-                    && entity.position.y <= ModApi.MAP_MAX.y
-                    && entity.position.z <= ModApi.MAP_MAX.z;
+            return position.x > ModApi.MAP_MIN.x
+                    && position.z > ModApi.MAP_MIN.z
+                    && position.x <= ModApi.MAP_MAX.x
+                    && position.z <= ModApi.MAP_MAX.z;
+        }
+
+        private static bool IsWithinWorldBoundsY(UnityEngine.Vector3 position)
+        {
+            return position.y > ModApi.MAP_MIN.y
+                    && position.y <= ModApi.MAP_MAX.y;
+        }
+
+        private static bool IsWithinWorldBounds(UnityEngine.Vector3 position)
+        {
+            return IsWithinWorldBoundsXAndZ(position)
+                && IsWithinWorldBoundsY(position);
         }
     }
 }
