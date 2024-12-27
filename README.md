@@ -5,13 +5,9 @@
 [![✅ Single Player and P2P Supported](https://img.shields.io/badge/✅%20Single%20Player%20and%20P2P-Supported-blue.svg)](https://7daystodie.com/)
 [![📦 Automated Release](https://github.com/jonathan-robertson/off-world-fix/actions/workflows/release.yml/badge.svg)](https://github.com/jonathan-robertson/off-world-fix/actions/workflows/release.yml)
 
-![off-world-fix social image](https://raw.githubusercontent.com/jonathan-robertson/off-world-fix/media/off-world-fix-logo-social.jpg)
-
 ## Summary
 
 7 Days to Die mod: Fix 'entities have fallen off the world' warning by moving those entities to the surface.
-
-TODO: 🔗 [Introductory video and demonstration of most features](#summary)
 
 ### Support
 
