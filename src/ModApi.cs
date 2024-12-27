@@ -14,7 +14,7 @@ namespace OffWorldFix
 
         public static Vector3i MAP_MIN { get; private set; }
         public static Vector3i MAP_MAX { get; private set; }
-        public static bool DebugMode { get; set; } = false;
+        public static bool DebugMode { get; set; } = true; // TODO: set default to false
 
         public void InitMod(Mod _modInstance)
         {

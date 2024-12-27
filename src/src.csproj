@@ -61,10 +61,10 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Commands\ConsoleCmdOffWorldFix.cs" />
     <Compile Include="ModApi.cs" />
     <Compile Include="Patches\Entity.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Utilities\BoundsManager.cs" />
     <Compile Include="Utilities\ModLog.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
