@@ -13,7 +13,25 @@ namespace OffWorldFix.Patches
         {
             try
             {
-                _log.Info($"Prefix: {__instance.entityId} marked for unload at position {__instance.position}");
+                // TODO: only log this if we take action
+                _log.Info($"Prefix: {__instance.entityId} ({__instance.GetDebugName()}) marked for unload at position {__instance.position.ToCultureInvariantString()}");
+
+                switch (__instance.GetType())
+                {
+                    // TODO: check more
+                    default:
+                        _log.Trace($"detected type: {__instance.GetType()}");
+                        // TODO: do more
+                        break;
+                }
+
+                if (__instance.position.y < ModApi.MAP_MIN.y)
+                {
+                    _log.Trace($"detected fell out of bottom of world");
+                    // TODO: do more
+                }
+
+                // TODO: do more for x/z bounds
             }
             catch (Exception e)
             {
