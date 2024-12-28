@@ -119,14 +119,3 @@ If you have trouble getting things working, you can reach out to me for support 
 ### Troubleshooting / Common Issues
 
 ⚠️ Because OffWorldFix contains a DLL file, you may have trouble uploading to a 7 Days to Die dedicated host. Some hosts will silently *remove* DLL files from mods or prevent them from being overwritten (i.e. updated) when they are uploaded via FTP or various other methods. Please be sure to double-check that the `OffWorldFix.DLL` file is found within the `off-world-fix` folder within your server if you don't see a reference to this DLL file in the logs on startup. In those cases, you can reach out to your host and explain the problem; most hosts will allow you to upload DLL mods and may have a special set of steps for you to follow or they may need to simply enable this functionality on your account.
-
-## Special Thanks
-
-Several people in the community have offered feedback, identified bugs, and have worked to provide me with debug logs to help move this project forward. Quantum Elevators is a cool idea and has been a lot of fun to work on, but would not be what it is today without the added effort from these incredible admins, modders, and players. *(Discord Usernames)*
-
-- `Shavick#8511` performed early testing and identified various issues that arose when client and server were both running the mod.
-- `Grandpa Minion#2643` and the NAPVP Community who helped with hardcore testing and several bug reports.
-- `Blight#7410` of Pimp my House, Tea Lounge, Juggernaut, and Ragnarok submitted bug reports that helped identify and resolve a critical bug.
-- `O C#2804` reviewed and offered suggestions and advice that led to the resolution of a critical bug.
-- `vivo#0815` identified how to recreate a bug that occurred only on initial launch of a new map.
-- `Oggy#9577` identified an issue related to height detection of multi-dimensional block rotation.
