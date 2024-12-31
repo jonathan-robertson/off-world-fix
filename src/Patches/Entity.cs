@@ -44,12 +44,20 @@ namespace OffWorldFix.Patches
                 if (!IsWithinWorldBoundsY(__instance.position))
                 {
                     var newPos = __instance.position;
+
+                    // snap to x/z center of current block
+                    newPos.x -= (newPos.x % 1.0f) + 0.5f;
+                    newPos.z -= (newPos.z % 1.0f) + 0.5f;
+
+                    // find new y position based on height
                     newPos.y = GameManager.Instance.World.GetHeightAt(__instance.position.x, __instance.position.z);
                     if (!IsWithinWorldBoundsY(newPos))
                     {
                         _log.Trace($"A valid position could not be determined to recover {__instance.entityId}; allowing entity unload.");
                         return true;
                     }
+
+                    // move entity
                     _log.Info($"Detected {__instance.entityType} entity {__instance.entityId} ({__instance.GetType()} // {__instance.GetDebugName()}) fell out of bottom of world; repositioning from {__instance.position.ToCultureInvariantString()} to {newPos.ToCultureInvariantString()}");
                     __instance.SetPosition(newPos);
                     ConnectionManager.Instance.SendPackage(NetPackageManager.GetPackage<NetPackageEntityTeleport>().Setup(__instance), false, -1, -1, -1, __instance.position, 192);
