@@ -33,16 +33,18 @@ namespace OffWorldFix.Patches
                     return true;
                 }
 
-                // TODO: check ownership... maybe teleport backpacks directly in front of player, for instance?
 
-                //switch (__instance.GetType())
-                //{
-                //    // TODO: check more
-                //    default:
-                //        _log.Trace($"detected type: {__instance.GetType()}");
-                //        // TODO: do more
-                //        break;
-                //}
+                switch (__instance)
+                {
+                    // case EntityDrone _: // try to recover
+                    // case EntityBackpack _: // try to recover
+                    //   TODO: check ownership... maybe teleport backpacks directly in front of player, for instance?
+                    case EntityFallingBlock _:
+                    case EntityFallingTree _:
+                    case EntitySupplyCrate _:
+                    case EntitySupplyPlane _:
+                        return true; // immediately return for removal
+                }
 
                 if (!IsWithinWorldBoundsY(__instance.position))
                 {

@@ -8,6 +8,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ## [0.1.4] - 2024-12-30
 
 - pile entities if present at destination
+- skip falling blocks, trees, supply plane/crate
 - snap recovered entity to center of tile
 
 ## [0.1.3] - 2024-12-30
