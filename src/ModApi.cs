@@ -29,8 +29,6 @@ namespace OffWorldFix
             }
         }
 
-        public Vector3i GetMapMin() { return MAP_MIN; }
-
         private static void OnGameStartDone()
         {
             try
